@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,13 +63,14 @@ class HomeFragment : Fragment() {
             var foodView = inflator.inflate(R.layout.food_rowview, null)
             foodView.imgFood.setImageResource(food.image!!)
             foodView.tvName.text = food.name!!
-            foodView.tvPrice.text = food.amount?.toString()!!
+            foodView.tvPrice.text = "$".plus(" ").plus(food.amount!!)
             foodView.ratingBar.rating = food.rating!!
             foodView.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, FoodDetailScreenActivity::class.java)
                 intent.putExtra("name", food.name!!)
                 intent.putExtra("description", food.description!!)
-                intent.putParcelableArrayListExtra("image", ArrayList(food.imageList))
+                intent.putExtra("amount", food.amount!!)
+                intent.putIntegerArrayListExtra("image", ArrayList(food.imageList))
                 context!!.startActivity(intent)
             })
 

@@ -7,11 +7,13 @@ import android.os.Handler
 import android.os.Parcelable
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.viewpagerindicator.CirclePageIndicator
+import kotlinx.android.synthetic.main.activity_food_detail_screen.*
 import java.util.*
 
 class FoodDetailScreenActivity : AppCompatActivity() {
@@ -25,7 +27,9 @@ class FoodDetailScreenActivity : AppCompatActivity() {
         imageModelArrayList = ArrayList()
         val bundle = intent.extras
         imageModelArrayList = bundle.getIntegerArrayList("image")
-
+        tvFoodName.text = bundle.getString("name")
+        tvFoodDescription.text = bundle.getString("description")
+        tvPrice.text = "$".plus(" ").plus(bundle.getFloat("amount").toString())
         init()
 
     }
@@ -72,7 +76,7 @@ class FoodDetailScreenActivity : AppCompatActivity() {
             override fun run() {
                 handler.post(Update)
             }
-        }, 3000, 3000)
+        }, 1000,5000)
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
