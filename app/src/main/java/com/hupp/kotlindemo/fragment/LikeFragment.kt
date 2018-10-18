@@ -2,6 +2,7 @@ package com.hupp.kotlindemo.fragment
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.hupp.kotlindemo.FoodDetailScreenActivity
 
 import com.hupp.kotlindemo.R
 import com.hupp.kotlindemo.model.FoodModel
@@ -30,6 +32,17 @@ class LikeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_like, container, false).apply { tag = TAG }
 
         listView = view.findViewById<ListView>(R.id.listView)
+
+        listView!!.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            // This is your listview's selected item
+            val item = parent.getItemAtPosition(position)
+            val intent = Intent(context, FoodDetailScreenActivity::class.java)
+            intent.putExtra("name", foodsList[position].name!!)
+            intent.putExtra("description", foodsList[position].description!!)
+            intent.putExtra("amount", foodsList[position].amount!!)
+            intent.putIntegerArrayListExtra("image", ArrayList(foodsList[position].imageList!!))
+            context!!.startActivity(intent)
+        }
 
         prepareLikeFoodData()
 
@@ -55,7 +68,6 @@ class LikeFragment : Fragment() {
                 R.drawable.tea2, 5f, 60f, listOf(R.drawable.tea2, R.drawable.tea, R.drawable.tea1, R.drawable.tea3)))
         adapter = FoodListViewAdapter(this.context!!, foodsList)
 
-        //var gvFoods = view.findViewById<GridView>(R.id.gvFoods)
         listView!!.adapter = adapter
         adapter?.notifyDataSetChanged()
     }
@@ -91,9 +103,9 @@ class LikeFragment : Fragment() {
             vh.tvPrice.text = "$".plus(" ").plus(food.amount!!)
             vh.ratingBar.rating = food.rating!!
             vh.imgFood.setImageResource(food.image!!)
-            view!!.setOnClickListener(View.OnClickListener {
+            /*view!!.setOnClickListener(View.OnClickListener {
                 Toast.makeText(getContext(), food.name!!, Toast.LENGTH_SHORT).show()
-            })
+            })*/
 
             return view
         }

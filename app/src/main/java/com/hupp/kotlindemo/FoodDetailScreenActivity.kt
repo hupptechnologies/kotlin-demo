@@ -34,19 +34,6 @@ class FoodDetailScreenActivity : AppCompatActivity() {
 
     }
 
-    /*private fun populateList(): ArrayList<ImageModel> {
-
-        val list = ArrayList<ImageModel>()
-
-        for (i in 0..5) {
-            val imageModel = ImageModel()
-            imageModel.setImage_drawables(myImageList[i])
-            list.add(imageModel)
-        }
-
-        return list
-    }*/
-
     private fun init() {
 
         mPager = findViewById<ViewPager>(R.id.pager)
@@ -76,7 +63,7 @@ class FoodDetailScreenActivity : AppCompatActivity() {
             override fun run() {
                 handler.post(Update)
             }
-        }, 1000,5000)
+        }, 1000,3000)
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
