@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 /**
  * Created by hupp on 17/10/18.
  */
+val KEY_CONNECTIONS = "KEY_CONNECTIONS"
 fun AppCompatActivity.replaceFragmenty(fragment: Fragment,
                                        allowStateLoss: Boolean = false,
                                        @IdRes containerViewId: Int) {

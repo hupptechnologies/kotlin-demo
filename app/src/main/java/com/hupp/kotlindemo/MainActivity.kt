@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.navigation_like -> {
                 replaceFragmenty(
-                        fragment = CartFragment(),
+                        fragment = LikeFragment(),
                         allowStateLoss = true,
                         containerViewId = R.id.mainContent
                 )
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.navigation_cart -> {
                 replaceFragmenty(
-                        fragment = LikeFragment(),
+                        fragment = CartFragment(),
                         allowStateLoss = true,
                         containerViewId = R.id.mainContent
                 )
